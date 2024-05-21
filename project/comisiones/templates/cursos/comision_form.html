@@ -1,7 +1,6 @@
 {% extends 'core/base.html' %}
-
 {% block titulo %}
-    Comisiones: 
+    Comisiones:
     {% if form.instance.pk %}
         Editar
     {% else %}
@@ -9,20 +8,22 @@
     {% endif %}
     Curso
 {% endblock titulo %}
-
 {% block contenido %}
-<p></p>
-<div style="border: 2px solid #000; padding: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;"> 
-    <form method="post">
-        {% csrf_token %}
-        <p></p>
-        <table>
-            {{ form.as_table }}
-        </table>
-        <p></p>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <a class="btn btn-secondary me-2" href="{% url 'comisiones:home' %}">Cancelar</a>
-    </form>
-</div> 
-
+    <p></p>
+    <div style="border: 2px solid #000;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center">
+        <form method="post">
+            {% csrf_token %}
+            <p></p>
+            <table>
+                {{ form.as_table }}
+            </table>
+            <p></p>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a class="btn btn-secondary me-2" href="{% url 'comisiones:home' %}">Cancelar</a>
+        </form>
+    </div>
 {% endblock contenido %}

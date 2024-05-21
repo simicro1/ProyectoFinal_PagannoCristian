@@ -2,23 +2,33 @@
 {% block titulo %}
     Comisiones: Detalle de un comision
 {% endblock titulo %}
-
 {% block contenido %}
-<p></p>
-<div style="border: 2px solid #000; padding: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-    <ul>
-        <p><b><u>Nro. de Comision:</u> {{ object.nombre }}</p></b>
-        <p><u>Curso:</u> {{ object.curso }}</p>
-        <p><u>Profesor:</u> {{ object.profesor }}</p>
-        <p><p><u>Estudiantes:</u></p>
-            {% for estudiante in object.estudiante.all %}
-            <p>{{estudiante.nombre}}</p>
-            {% endfor %}
-        </p>
-    </ul>
-
-    <div class="fs-3 pb-4">
-        <a class="btn btn-secondary me-2" href="{% url 'comisiones:home' %}">Regresar</a>
+    <p></p>
+    <div style="border: 2px solid #000;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center">
+        <ul>
+            <p>
+                <b><u>Nro. de Comision:</u> {{ object.nombre }}
+                </p>
+            </b>
+            <p>
+                <u>Curso:</u> {{ object.curso }}
+            </p>
+            <p>
+                <u>Profesor:</u> {{ object.profesor }}
+            </p>
+            <p>
+                <p>
+                    <u>Estudiantes:</u>
+                </p>
+                {% for estudiante in object.estudiante.all %}<p>{{ estudiante.nombre }}</p>{% endfor %}
+            </p>
+        </ul>
+        <div class="fs-3 pb-4">
+            <a class="btn btn-secondary me-2" href="{% url 'comisiones:home' %}">Regresar</a>
+        </div>
     </div>
-</div>
 {% endblock contenido %}

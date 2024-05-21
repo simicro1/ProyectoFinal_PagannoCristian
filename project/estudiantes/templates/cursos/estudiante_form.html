@@ -1,7 +1,6 @@
 {% extends 'core/base.html' %}
-
 {% block titulo %}
-    Estudiantes: 
+    Estudiantes:
     {% if form.instance.pk %}
         Editar
     {% else %}
@@ -9,17 +8,19 @@
     {% endif %}
     Estudiante
 {% endblock titulo %}
-
 {% block contenido %}
-<p></p>
-<div style="border: 2px solid #000; padding: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">      
-    <form method="post">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <a class="btn btn-secondary me-2" href="{% url 'estudiantes:home' %}">Cancelar</a>
-    </form>
-   
-{% endblock contenido %}
+    <p></p>
+    <div style="border: 2px solid #000;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center">
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a class="btn btn-secondary me-2" href="{% url 'estudiantes:home' %}">Cancelar</a>
+        </form>
+    {% endblock contenido %}
