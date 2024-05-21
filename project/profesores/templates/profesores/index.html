@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block titulo %}
+    {% include 'core/components/titulo1.html' with titulo="App Coder" %}
+{% endblock titulo %}
+{% block contenido %}
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5">
+            <img class="img-fluid rounded mb-4 mb-lg-0"
+                 src="{% static 'core/img/profesores.webp' %}"
+                 alt="Home Page"
+                 width="100%" />
+        </div>
+        <div class="col-lg-7">
+            <h2 class="font-weight-light">Profesores:</h2>
+            <h3 class="font-weight-light"></h3>
+            <p>
+                Además de su experiencia académica y profesional, nuestros profesores se distinguen por su enfoque personalizado y su capacidad para inspirar y motivar a los estudiantes a alcanzar su máximo potencial. Ya sea a través de clases interactivas, tutoriales prácticos o sesiones de asesoramiento individualizado, nuestros profesores están aquí para ayudarte a alcanzar tus metas educativas y profesionales.
+            </p>
+        </div>
+    </div>
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-7">
+            <h3 class="font-weight-light">Buscador de Profesores:</h3>
+            <div class="py-lg-4 ">
+                <form action="{% url 'profesores:home' %}" method="get" class="d-flex">
+                    <input type="text"
+                           name="consulta"
+                           placeholder="Buscar..."
+                           class="form-control me-2">
+                    <button type="submit" class="btn btn-primary me-2">Buscar</button>
+                    <button type="button" class="btn btn-secondary me-2" onclick="this.form.reset();">Cancelar</button>
+                    <a class="btn btn-success" href="{% url 'profesores:create' %}">Crear</a>
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Profesor</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profesor in profesores %}
+                        <tr>
+                            <td>{{ profesor.nombre }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm me-1"
+                                   href="{% url 'profesores:detail' profesor.id %}">Detalle</a>
+                                <a class="btn btn-warning btn-sm me-1"
+                                   href="{% url 'profesores:update' profesor.id %}">Cambiar</a>
+                                <a class="btn btn-danger btn-sm"
+                                   href="{% url 'profesores:delete' profesor.id %}">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock contenido %}

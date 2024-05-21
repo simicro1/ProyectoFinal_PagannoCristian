@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block titulo %}
+    {% include 'core/components/titulo1.html' with titulo="App Coder" %}
+{% endblock titulo %}
+{% block contenido %}
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5">
+            <img class="img-fluid rounded mb-4 mb-lg-0"
+                 src="{% static 'core/img/estudiantes.webp' %}"
+                 alt="Home Page"
+                 width="100%" />
+        </div>
+        <div class="col-lg-7">
+            <h2 class="font-weight-light">Estudiantes:</h2>
+            <h3 class="font-weight-light"></h3>
+            <p>
+                Ya seas un estudiante de secundaria ansioso por explorar nuevas áreas de conocimiento, un universitario en busca de complementar tu formación académica, o un profesional en busca de desarrollo profesional, aquí encontrarás un espacio donde tu sed de conocimiento será saciada.
+            </p>
+        </div>
+    </div>
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-7">
+            <h3 class="font-weight-light">Buscador de Estudiantes:</h3>
+            <div class="py-lg-4 ">
+                <form action="{% url 'estudiantes:home' %}" method="get" class="d-flex">
+                    <input type="text"
+                           name="consulta"
+                           placeholder="Buscar..."
+                           class="form-control me-2">
+                    <button type="submit" class="btn btn-primary me-2">Buscar</button>
+                    <button type="button" class="btn btn-secondary me-2" onclick="this.form.reset();">Cancelar</button>
+                    <a class="btn btn-success" href="{% url 'estudiantes:create' %}">Crear</a>
+                </form>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Estudiante</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for estudiante in estudiantes %}
+                        <tr>
+                            <td>{{ estudiante.nombre }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm me-1"
+                                   href="{% url 'estudiantes:detail' estudiante.id %}">Detalle</a>
+                                <a class="btn btn-warning btn-sm me-1"
+                                   href="{% url 'estudiantes:update' estudiante.id %}">Cambiar</a>
+                                <a class="btn btn-danger btn-sm"
+                                   href="{% url 'estudiantes:delete' estudiante.id %}">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock contenido %}

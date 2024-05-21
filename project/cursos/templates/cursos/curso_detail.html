@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Cursos: Detalle de un curso
+{% endblock titulo %}
+
+{% block contenido %}
+<p></p>
+<div style="border: 2px solid #000; padding: 20px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+    <ul>
+        <p></p>
+        <p><b><u>Nombre del Curso:</u> {{ object.nombre }}</p></b>
+        <p><p><u>Comision Asignada:</p></u>
+            {% for comision in object.comisiones.all %}
+            <p>{{comision.nombre}} - {{comision.profesor}}</p>
+            {% endfor %}
+        </p>
+    </ul>
+
+    <div class="fs-3 pb-4">
+        <a class="btn btn-secondary me-2" href="{% url 'cursos:home' %}">Regresar</a>
+    </div>
+</div>
+{% endblock contenido %}
